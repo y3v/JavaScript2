@@ -1,0 +1,50 @@
+#wrapper {
+    width : 50%;
+    margin: 0 auto;
+}
+
+.mob {
+    display: inline-block;
+    width : 35px;
+    border-radius: 10px;
+    vertical-align: text-bottom;
+    border: 2px solid lightblue;
+    margin:5px;
+}
+
+.mob[draggable="true"] {
+    background-color: blue;
+    padding:15px 30px;
+    color:white;
+    font-weight: 900;
+    font-family: arial;
+}
+
+body>div{
+  width:50%;
+  padding:75px;
+  margin: 50px;
+  height:100px;
+}
+
+#drop_area {
+    float:right;
+    width:250px;
+    height:50px;
+    padding:10px;
+    border:1px solid #aaaaaa;
+    box-shadow: 10px 10px 5px #888888;
+    position: relative;
+    padding-top: 20px;
+}
+
+.entered {
+    border: 4px solid orange;
+}
+
+#drop_area span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
