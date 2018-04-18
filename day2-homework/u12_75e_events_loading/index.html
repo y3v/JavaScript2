@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>P87_j01_50_revise_js_load_event</title>
+    <style>
+
+        #cont {
+            position:relative;
+        }
+
+        #cadre {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #photo {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <img id="photo" src="https://source.unsplash.com/random" alt="" />
+        <img id="cadre" src="image/frame_bois_1.png"/>
+    </div>
+    <script src="script/main.js"></script>
+</body>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+  let photo = document.getElementById("photo")
+  let cadre = document.getElementById('cadre')
+
+  photo.addEventListener("load", function(){
+    let width = photo.width;
+    let height = photo.height
+    cadre.style.width = width + "px";
+    cadre.style.height = height + "px";
+    console.log("width " + width);
+  })
+
+
+});
+</script>
+</html>
