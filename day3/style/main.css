@@ -1,0 +1,11 @@
+* {
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+#pad {
+    width: 70vw;
+    height: 70%;
+    background-color: #dbece4;
+}
