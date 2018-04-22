@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>ISI-P87 Canvas / Pixel color manipulation</title>
+    <style>
+        body {
+        }
+        canvas {
+            border : 2px solid #dd5c11;
+            background-image: url('images/damier.png');
+        }
+    </style>
+</head>
+<body>
+<h1>ISI-P87 Canvas / Pixel color manipulation</h1>
+<div class="controls">
+    <fieldset>
+        <legend>Components to remove</legend>
+        <label for="red">Red</label><input type="checkbox" id="red" data-color_offset="0" name="color">
+        <label for="green">Green</label><input type="checkbox" id="green" data-color_offset="1" name="color">
+        <label for="blue">Blue</label><input type="checkbox" id="blue" data-color_offset="2" name="color">
+    </fieldset>
+    <button id="revert">Revert</button>
+    <button id="remove_components">Remove all checked components</button>
+    <button id="grayscale">Grayscale</button>
+    <button id="to_alpha">Alpha</button>
+</div>
+<canvas id="canvas0" width="1000" height="800">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script type="module" src="script/main.js"></script>
+</body>
+</html>
