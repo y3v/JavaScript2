@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
   headImage.addEventListener("load", function(){
 
+    /*ctx.translate(canvas.width, 0)
+    ctx.scale(-1,1)*/
 
     ctx.drawImage(headImage, 0, 0, canvas.width, canvas.height)
 
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
     ctx.drawImage(headImage, 0, 0, canvas.width, canvas.height)
     ctx.putImageData(tempImage, selection.x, selection.y)
     //ctx.drawImage(headImage, 0, 0, canvas.width, canvas.height)
-    ctx.save()
+    //ctx.save()
   })
 
   buttonSymmetry.addEventListener("click",function(){
