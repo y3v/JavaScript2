@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SVG DEMO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+</head>
+<body>
+    <style>
+        svg{
+            fill:none;
+            stroke:blue;
+            width:300px;
+            height:300px;
+            border: 2px solid blue;
+        }
+    </style>
+<div id="wrapper">
+    <h1>SVG Demo</h1>
+    <h2><a href="http://tutorials.jenkov.com/svg/textpath-element.html">tutorials.jenkov.com/svg/textpath-element.html</a></h2>
+    <div id="pad-cont">
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <defs>
+                <g id="shape">
+                    <rect x="0" y="0" width="50" height="50"></rect>
+                    <circle cx="0" cy="0" r="50"></circle>
+                </g>
+            </defs>
+            <use xlink:href="#shape" x="50" y="50"></use>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect x="10" y="10" width="50" height="50" style="stroke:#cc8a8b"></rect>
+            <rect x="10" y="10" width="50" height="50" style="stroke:#448a8b" transform="translate(50,50)"></rect>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect x="10" y="10" width="50" height="50" style="stroke:#cc8a8b"></rect>
+            <rect x="10" y="10" width="50" height="50" style="stroke:#448a8b" transform="rotate(15)"></rect>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect x="10" y="10" width="50" height="50" style="stroke:#cc8a8b"></rect>
+            <rect x="10" y="10" width="50" height="50" style="stroke:#448a8b" transform="rotate(25 20 20)"></rect>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect x="10" y="10" width="100" height="100" style="stroke:#cc8a8b"></rect>
+            <rect x="10" y="10" width="100" height="100" style="stroke:#448a8b" transform="scale(2, 0.5)"></rect>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect x="10" y="10" width="100" height="100" style="stroke:#cc8a8b"></rect>
+            <rect x="10" y="10" width="100" height="100" style="stroke:#448a8b" transform="skewX(20)"></rect>
+            <rect x="10" y="10" width="100" height="100" style="stroke:#448a55" transform="skewY(20)"></rect>
+            <rect x="10" y="10" width="100" height="100" style="stroke:#bb4444" transform="skewY(20),skewX(20)"></rect>
+        </svg>
+
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <line x1='20' x2='120' y1='20' y2="20" stroke="blue" stroke-width="20" stroke-linecap="round"/>
+            <line x1='20' x2='120' y1='20' y2="20" stroke="yellow" stroke-width="1" stroke-linecap="butt"/>
+            <line x1='20' x2='120' y1='60' y2="60" stroke="blue" stroke-width="20" stroke-linecap="square"/>
+            <line x1='20' x2='120' y1='60' y2="60" stroke="yellow" stroke-width="1" stroke-linecap="butt"/>
+            <line x1='20' x2='120' y1='100' y2="100" stroke="blue" stroke-width="20" stroke-linecap="butt"/>
+            <line x1='20' x2='120' y1='100' y2="100" stroke="yellow" stroke-width="1" stroke-linecap="butt"/>
+        </svg>
+
+        <h2>Path</h2>
+        <span>Absolute</span>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 10 H 100 V 200 Z"></path>
+        </svg>
+        <span>Relative</span>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 20 20 h 90 v 180 Z"></path>
+        </svg>
+        <span>Bezier Curve</span>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 10 10 C 20 20, 40 20, 50 10"></path>
+        </svg>
+
+        <span>Bezier Curve 2</span>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 130 10 C 120 20, 180 20, 170 10"></path>
+        </svg>
+
+        <span>Bezier Curve 3</span>
+        <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 140 10 C 120 120, 180 120, 160 10"></path>
+        </svg>
+
+        <br />
+        <span>Text</span>
+        <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+            <text x="15" y="115" style="font-size:48px;stroke:red;fill:teal;">HeLlO wORlD</text>
+        </svg>
+
+        <br />
+        <span>Text 2</span>
+        <svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+            <line x1='150' x2='150' y1='0' y2="200" stroke="orange" stroke-width="5" stroke-linecap="round"/>
+            <text x="150" y="115" style="font-size:48px;stroke:red;fill:teal;text-anchor:start;">StaRT</text>
+            <text x="150" y="155" style="font-size:48px;stroke:red;fill:teal;text-anchor:middle;">mIDdLe</text>
+            <text x="150" y="195" style="font-size:48px;stroke:red;fill:teal;text-anchor:end;">eND</text>
+        </svg>
+
+        <br />
+        <span>Text 3</span>
+        <svg width="900" height="200" xmlns="http://www.w3.org/2000/svg">
+            <text x="20" y="55" style="font-size:48px;stroke:red;fill:teal;text-anchor:start;">spAn
+                <tspan>tspan line1</tspan>
+                <tspan dy="10">tspan line2</tspan>
+                <tspan style="font-weight:bold; font-size:15px;" dy="10 10 10 0 10" dx="0 0 0 20 0">abcde</tspan> APRES
+            </text>
+        </svg>
+
+        <br />
+        <span>E=mc^2</span>
+        <svg width="900" height="200" xmlns="http://www.w3.org/2000/svg">
+            <text x="20" y="55" style="font-size:48px;stroke:red;fill:teal;text-anchor:start;">E=mc
+                <tspan dy="-10" dx="-10" style="baseline-shift:super; font-size:20px">2</tspan>
+            </text>
+        </svg>
+
+        <h1>USING SNAP!</h1>
+        <svg id="svgout1" width="300" height="300"></svg>
+        <svg id="svgout2" width="300" height="300"></svg>
+        <svg id="svgout3" width="300" height="300"></svg>
+        <svg id="svgout4" width="300" height="300"></svg>
+    </div>
+    <div id="output"></div>
+</div>
+<button id="send">Start Worker</button>
+<button id="stop">Stop Worker</button>
+<script>
+
+    let s1 = Snap('#svgout1')
+    let s2 = Snap('#svgout2').attr({viewBox:'0 0 150 150'})
+    let s3 = Snap('#svgout3').attr({viewBox:'-10 -10 100 100'})
+    let s4 = Snap('#svgout4').attr({viewBox:'-100 -100 200 200'})
+
+    function draw(s){
+        const OPTIONS = {fill:'#ffaf00', stroke:'red'}
+        let r = s.rect(0,0,100,100)
+                .attr(OPTIONS)
+
+        let c = s.circle(0,0, 50).attr(OPTIONS).attr({opacity:'0.25'})
+    }
+
+    draw(s1);
+    draw(s2);
+    draw(s3);
+    draw(s4);
+</script>
+
+</body>
+</html>

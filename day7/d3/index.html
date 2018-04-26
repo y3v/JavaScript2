@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>D3 DEMO</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <h1>D3 Demo</h1>
+    <div id="pad-cont">
+        <table>
+            <thead>
+                <tr>
+                    <td>A</td><td>B</td><td>C</td><td>D</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+                <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+                <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+                <tr><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+            </tbody>
+        </table>
+
+    <svg width="720" height="800">
+            <g>
+                <circle r="40" cx="40" cy="40"></circle>
+                <circle r="40" cx="120" cy="120"></circle>
+                <circle r="40" cx="240" cy="240"></circle>
+                <circle r="40" cx="360" cy="360"></circle>
+                <circle r="40" cx="480" cy="480"></circle>
+            </g>
+        </svg>
+
+        <svg id="svg2" width="100%" height="300">
+            <g transform="translate(50,50)">
+
+            </g>
+        </svg>
+
+        <svg id="svg3" width="100%" height="800">
+        </svg>
+
+        <svg id="svg4" width="100%" height="800">
+        </svg>
+    </div>
+    <div id="output"></div>
+</div>
+<button id="send">Start Worker</button>
+<button id="stop">Stop Worker</button>
+<style>
+    .big{
+        fill:red;
+    }
+    .small{
+        fill:green;
+    }
+    .bar{
+        fill:orange;
+    }
+    .bar:hover{
+        fill:red;
+    }
+</style>
+<script>
+
+    let s0 = d3.select('body');
+    console.log(s0)
+
+    let s1 = d3.selectAll('tr');
+    console.log(s1)
+
+    let s1b = d3.selectAll('td');
+    console.log(s1b)
+
+    let s2 = d3.selectAll('tbody tr').selectAll('td')
+    console.log(s2)
+
+    s2.style('color', function(d,i){
+        return i===0 ? 'red' : 'blue'
+    })
+
+
+    //SVG1
+    const POPULATION = [{name:"Yokohama",population:3.7},{name:"Jakarta",population:10},
+                    {name:"Shanghai",population:24.3},{name:"Sao Paolo",population:12},
+                    {name:"Dehli",population:16.8}, {name:"Mexico City",population:8.9}];
+
+    let average = d3.mean(POPULATION,d => d.population)
+    let max = d3.max(POPULATION, d=> d.population)
+    let min = d3.min(POPULATION, d=> d.population)
+    console.log(average)
+    console.log(max)
+    console.log(min)
+
+    let circles = d3.select('svg').selectAll('circle').data(POPULATION).attr('r', d=>d.population)
+    .classed("big", d=>d.population > average).classed("small", d=>d.population <=average)
+
+    //SVG2
+    let svg = d3.select('#svg2'), g = svg.select('g')
+    svg_width = svg.node().clientWidth;
+    console.log(svg_width)
+
+    let ray_scale = d3.scaleSqrt()
+                    .domain([0, max])
+                    .range([0, 50]);
+
+    let xpos_scale = d3.scaleSqrt()
+                    .domain([0, POPULATION.length])
+                    .range([0, svg_width]);
+
+    let circles2 = g.selectAll('circle').data(POPULATION).enter().append('circle').attr('r', d=> ray_scale(d.population))
+    .attr('cx', (d,i)=> xpos_scale(i)).classed("big", d=>d.population > average).classed("small", d=>d.population <=average)
+
+    //SVG 3
+    let svg3 = d3.select('#svg3'),
+    svg_width2 = svg3.node().clientWidth|window.innerWidth,
+    svg_height2 = svg3.node().clientHeight|window.innerHeight;
+
+
+    console.log(svg_width2, svg_height2);
+    const NODES_COUNT = 100;
+    let nodes = d3.range(NODES_COUNT).map(d=>({radius:Math.random() * 25}))
+    console.log(nodes);
+
+    let simulation = d3.forceSimulation(nodes)
+        .force('charge', d3.forceManyBody().strength(5))
+        .force('center', d3.forceCenter(svg_width2/2,svg_height2/2))
+        .force('collision', d3.forceCollide().radius(d=>d.radius))
+        .on('tick', frame);
+
+    function frame(){
+        let select = svg3
+            .selectAll('circle')
+            .data(nodes)
+
+        select.enter()
+            .append('circle')
+            .attr('r', d=>d.radius)
+            .merge(select)
+            .attr('cx', d=>d.x)
+            .attr('cy', d=>d.y)
+    }
+
+    //SVG 4
+    let svg4 = d3.select('#svg4'),
+    svg_width3 = svg4.node().clientWidth|window.innerWidth,
+    svg_height3 = svg4.node().clientHeight|window.innerHeight;
+    margins = {top:20, right:20, bottom: 30, left:40};
+    width = svg_width3 - margins.left - margins.right;
+    height = +svg4.attr('height') - margins.top - margins.bottom
+
+    console.log(height)
+    console.log(width)
+
+    let xscale = d3.scaleBand().rangeRound([0,width]).padding(0.1),
+    yscale = d3.scaleLinear().rangeRound([height, 0]);
+
+    let g1 = svg4.append('g').attr('transform', `translate(${margins.left}, ${margins.top})`)
+
+    d3.tsv('data.tsv', d=> {d.frequency = Number(d.frequency); return d}, (err, data)=> {
+        console.log(data)
+        xscale.domain(data.map(d=>d.letter))
+        yscale.domain([0, d3.max(data, d=>d.frequency)])
+
+        console.log(xscale)
+
+        //draw x-axis
+        g1.append('g')
+        .attr('class', 'axis axis--x')
+        .attr('transform', `translate(0,${height})`)
+        .call(d3.axisBottom(xscale));
+
+        //draw y-axis
+        g1.append('g')
+        .attr('class', 'axis axis--y')
+        .call(d3.axisLeft(yscale).ticks(10,'%'));
+
+        g1.selectAll('.bar')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d=>xscale(d.letter))
+        .attr('y', d=>yscale(d.frequency))
+        .attr('width', xscale.bandwidth())
+        .attr('height', d=>height-yscale(d.frequency))
+    })
+
+</script>
+
+</body>
+</html>
