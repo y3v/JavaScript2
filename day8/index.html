@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>D3 DEMO</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="pad-cont">
+        <svg id="svg4" width="100%" height="800" style="background-color:#bada55">
+            <g>
+                <rect x="10" y="10" width="150" height="150" style="stroke:#448a8b;fill:orange"></rect>
+                <rect x="50" y="50" width="150" height="150" style="stroke:#448a8b;fill:lightblue"></rect>
+            </g>
+        </svg>
+    </div>
+    <div id="output"></div>
+</div>
+<button id="send">Start Worker</button>
+<button id="stop">Stop Worker</button>
+<style>
+    .big{
+        fill:red;
+    }
+    .small{
+        fill:green;
+    }
+    .bar{
+        fill:orange;
+    }
+    .bar:hover{
+        fill:red;
+    }
+</style>
+<script>
+
+    let circleRadii = 10;
+    let circleStyle = "fill:none;stroke:black;"
+    let squareClicked = "fill:#34dc23;stroke:black;"
+
+    let s = Snap('svg g')
+
+    let squares = Snap.selectAll('rect')
+    console.log(squares)
+
+    console.log(squares.length)
+
+    squares.forEach(e=>{
+        e.dblclick(d=>{
+            let box = e.getBBox()
+            console.log(box)
+
+            s.append(e)
+            e.attr({style:squareClicked})
+
+            s.circle(box.x, box.y, circleRadii).attr({style: circleStyle})
+            s.circle(box.x+box.width, box.y, circleRadii).attr({style: circleStyle})
+            s.circle(box.x2, box.y2, circleRadii).attr({style: circleStyle})
+            s.circle(box.x, box.y2, circleRadii).attr({style: circleStyle})
+
+
+        })
+
+        e.drag(dragMove,dragStart,dragEnd)
+    }, false)
+
+    function dragStart(x,y,ev){
+
+    }
+
+    function dragMove(dx, dy, x, y, ev){
+        console.log("MOVING")
+        //console.log(this.attr.width);
+        console.log(this.node.height.baseVal.value)
+        this.attr({
+            x:x-this.node.width.baseVal.value/2,
+            y:y-this.node.height.baseVal.value/2
+        })
+    }
+
+    function dragEnd(ev){
+
+    }
+
+
+
+
+    /*squares[0].dblclick(e=>{
+        let box = squares[0].getBBox()
+        console.log(box)
+        s.circle(box.x, box.y, circleRadii).attr({style: circleStyle})
+        s.circle(box.x+box.width, box.y, circleRadii).attr({style: circleStyle})
+        s.circle(box.x2, box.y2, circleRadii).attr({style: circleStyle})
+        s.circle(box.x, box.y2, circleRadii).attr({style: circleStyle})
+
+        //s.append(squares[0])
+
+    })
+
+    squares[1].dblclick(e=>{
+        let box = squares[1].getBBox()
+        console.log(box)
+        s.circle(box.x, box.y, circleRadii).attr({style: circleStyle})
+        s.circle(box.x+box.width, box.y, circleRadii).attr({style: circleStyle})
+        s.circle(box.x2, box.y2, circleRadii).attr({style: circleStyle})
+        s.circle(box.x, box.y2, circleRadii).attr({style: circleStyle})
+
+        //s.append(squares[1])
+
+    })*/
+
+
+</script>
+
+</body>
+</html>
