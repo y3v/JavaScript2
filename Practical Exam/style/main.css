@@ -1,0 +1,61 @@
+/* Container principal */
+#wrapper {
+    width : 80%;
+    margin : auto;
+    background-color: palegoldenrod;
+    border-radius: 50px;
+    padding: 25px;
+
+}
+
+/* Container principal */
+#output {
+    width : auto;
+    width : auto;
+    margin-bottom : 25px;
+}
+
+#output canvas {
+    display : block;
+    border : 1px solid blue;
+    border-radius: 10px;
+    margin-left : auto;
+    margin-right : auto;
+   /*width : 100%;*/
+}
+
+/* Contrainer for controls */
+#controls {
+    padding:10px;
+    width : 50%;
+    margin : auto;
+    background-color: #d3cd9a;
+    border-radius: 10px;
+}
+
+textarea {
+    margin : 2em 0;
+    font-size: 15pt;
+    width : 98%;
+    margin: auto;
+    height : 100px;
+}
+
+#image_controls {
+    padding-left : auto;
+    padding-right : 25%;
+    margin : auto;
+    width : 250px;
+}
+
+#color_controls {
+    padding-left : 30%;
+    padding-right : 25%;
+    margin : auto;
+    /*width : 45%;*/
+}
+
+.text-style{
+  font-size:25px;
+  font-family:Georgia, Arial, sans-serif;
+}

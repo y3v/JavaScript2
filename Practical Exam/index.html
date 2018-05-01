@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Announcement card WYSIWIG editor</title>
+    <link rel="stylesheet" href="style/main.css"/>
+</head>
+
+<body>
+
+<h1>Announcement card WYSIWIG editor</h1>
+<div id="wrapper">
+    <div id="output">
+        <canvas id="canvas0" width="800" height="400" draggable="true">No canvas support</canvas>
+    </div>
+    <div id="controls">
+        <div id="image_controls">
+            <label for="bckg_img_1">Image 1</label>
+            <input type="radio" name="bckg_img" id="bckg_img_1" value="bckg_img_1" data-img_src="image/bckg_fleurs.png"/>
+            <label for="bckg_img_2">Image 2</label>
+            <input type="radio" name="bckg_img" id="bckg_img_2" value="bckg_img_2" data-img_src="image/bckg_naif.png"/>
+            <label for="bckg_img_3">Image 3</label>
+            <input type="radio" name="bckg_img" id="bckg_img_3" value="bckg_img_3" data-img_src="image/bckg_anime.jpg"/>
+        </div>
+        <div id="color_controls">
+            <label for="text_color">Text color</label>
+            <input type="color" name="text_color" id="text_color"/><br/>
+            <!--<button id="print_btn">Print</button><br/>-->
+        </div>
+        <textarea id="text_content" rows="10" cols="80" placeholder="(type your text here)"></textarea>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="script/main.js"></script>
+</body>
+</html>
